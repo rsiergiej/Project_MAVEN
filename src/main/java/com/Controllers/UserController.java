@@ -54,8 +54,9 @@ Usunięcie produkt
 
 
     @GetMapping("/person/{id}")
-    public ResponseEntity<Person> getPersonById(@PathVariable(value = "id") Long noteId) {
-        Person note = personRepository.findOne(noteId);
+    public ResponseEntity<Person> getPersonById(@PathVariable(value = "id") Long id) {
+        Person note = personRepository.getOne(id); // błąd serializacji>???
+        System.err.println(note.toString());
         if(note == null) {
             return ResponseEntity.notFound().build();
         }
