@@ -2,8 +2,6 @@ package com.Entity;
 
 
 import lombok.*;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 
 import javax.persistence.*;
 
@@ -11,6 +9,7 @@ import javax.persistence.*;
 @ToString
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "PERSON")
@@ -18,13 +17,19 @@ import javax.persistence.*;
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name="ID")
+    @Getter
+    @Setter
     private Long id;
 
 
-    @Getter
     @Column(name="name")
+    @Getter
+    @Setter
     private  String name;
+
+    @Getter
+    @Setter
+    private String description;
 
 
     public Person(String name)
