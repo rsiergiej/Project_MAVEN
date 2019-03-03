@@ -26,7 +26,7 @@ Usunięcie produkt
 
     @Autowired
     private PersonRepository personRepository;
-
+    private String someArgument ="test";
 
 
     @GetMapping("/status/check")
@@ -54,28 +54,24 @@ Usunięcie produkt
 
 
 
-    @GetMapping("/person/{id}")
+    @GetMapping("/personID/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable(value = "id") Long id) {
-        Optional<Person> note = personRepository.findById(id); // błąd serializacji>???
-
-        System.err.println(note.toString());
-
-        if(note == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(note.orElse(new Person("Radek to debil")));
+        Optional<Person> person = personRepository.findById(id);
+        return ResponseEntity.ok().body(person.orElseThrow(() -> new RuntimeException("Unknown IDPerson")));
     }
 
 
 
-    @GetMapping("/person1/{name}")
+    @GetMapping("/personNAME/{name}")
     public ResponseEntity<Person> getByName(@PathVariable(value = "name") String name) {
-        Person note = personRepository.findByName(name); // błąd serializacji>???
-        System.err.println(note.toString());
-        if(note == null) {
-            return ResponseEntity.notFound().build();
+        Person person = personRepository.findByName(name);
+        if(person == null) {
+            System.err.println("tutaj");
+
+            return ResponseEntity.badRequest().body(person);
+           // return ResponseEntity.notFound().build("Brak");
         }
-        return ResponseEntity.ok().body(note);
+        return ResponseEntity.ok().body(person);
     }
 
 
