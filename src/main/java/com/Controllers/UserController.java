@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -55,16 +56,27 @@ Usunięcie produkt
 
     @GetMapping("/person/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable(value = "id") Long id) {
-        Person note = personRepository.getOne(id); // błąd serializacji>???
+        Optional<Person> note = personRepository.findById(id); // błąd serializacji>???
+
+        System.err.println(note.toString());
+
+        if(note == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(note.orElse(new Person("nie ma takiego person")));
+    }
+
+
+
+    @GetMapping("/person1/{name}")
+    public ResponseEntity<Person> getByName(@PathVariable(value = "name") String name) {
+        Person note = personRepository.findByName(name); // błąd serializacji>???
         System.err.println(note.toString());
         if(note == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok().body(note);
     }
-
-
-
 
 
 

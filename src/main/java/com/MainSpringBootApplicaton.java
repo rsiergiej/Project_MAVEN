@@ -29,7 +29,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing // co to jest??
-public class MainSpringBootApplicaton {
+public class MainSpringBootApplicaton
+{
 
 
 
