@@ -26,7 +26,7 @@ public class DataInitializer {
 
 
         return (args) -> { // zapis do bazy
-            repository.save(new Person("Radek"));
+            repository.save(new Person("Radek", "test"));
             repository.save(new Person("Michal"));
             repository.save(new Person("Paweł"));
             repository.save(new Person("Tomek"));
