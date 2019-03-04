@@ -147,7 +147,7 @@ jezeli wyjatek to 500
     @GetMapping("/search/person")
         public List getallpersonsort(
                 @RequestParam (value="direction") Sort.Direction dir,
-                @RequestParam (value="column") String column)
+                @RequestParam (value="column", defaultValue = "name") String column)
     {
         List<Person> list =  personRepository.findAll(Sort.by(dir, column));
         return list;
