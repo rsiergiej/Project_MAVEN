@@ -21,10 +21,16 @@ Który rozszerza JpaRepository
 A później możesz robić save do bazy
  */
 
+import com.Entity.Person;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+import java.awt.Label;
 
 
 @SpringBootApplication
@@ -37,6 +43,22 @@ public class MainSpringBootApplicaton
 
 	public static void main(String[] args) {
 		SpringApplication.run(MainSpringBootApplicaton.class, args);
+
+
+//		try {
+//			Class cls = Class.forName("com.Entity.Person");
+//			System.out.println("Fields =");
+//
+//			// returns the array of Field objects representing the public fields
+//			Field f[] = cls.getDeclaredFields();
+//			for (int i = 0; i < f.length; i++) {
+//				System.out.println(f[i].getName());
+//			}
+//		} catch (Exception e) {
+//			System.out.println("Exception: " + e);
+//		}
+
+
 
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -88,7 +89,7 @@ jezeli wyjatek to 500
     public ResponseEntity<Person> getByName(@PathVariable(value = "name") String name) {
         Person person = personRepository.findByName(name);
         if(person == null) {
-            return ResponseEntity.badRequest().body(person);
+            return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok().body(person);
     }
@@ -111,47 +112,83 @@ jezeli wyjatek to 500
     }
 
 
-//    @GetMapping("/getallpersonsort/{column}")
-//    public List getallpersonsort(@PathVariable(value="column") String column)
-//    {
-//
-//        if(column.equals("name"))
-//        {
-//            return personRepository.findAll(Sort.by("name"));
-//        }else if (column.equals("description"))
-//        {
-//            return personRepository.findAll(Sort.by("description"));
-//        }else if (column.equals("id"))
-//        {
-//            return personRepository.findAll(Sort.by("id"));
-//        }else
-//        {
-//            return null;
-//        }
-//    }
+
 
 
 
 //    @GetMapping("/getallpersonsort/{column}")
 //    public List getallpersonsort(@PathVariable(value="column") String column, @SortDefault(sort=column) Sort sort)
 //    {
-//
 //        return personRepository.findAll(sort);
-//
-//
 //    }
 
-
-    //g allPerson/nameStartWith?name=r&sort=name&name.dir=desc
-
+    //http://localhost:8080/users/search/person/?direction=DESC&column=id
     @GetMapping("/search/person")
-        public List getallpersonsort(
-                @RequestParam (value="direction") Sort.Direction dir,
-                @RequestParam (value="column", defaultValue = "name") String column)
+        public ResponseEntity<List> getallpersonsort( // ASC - sortowanie rosnaco ; DESC - sortowanie malejąco
+                @RequestParam (value="direction" , defaultValue = "ASC") Sort.Direction dir,
+                @RequestParam (value="column", defaultValue = "id") String column)
     {
-        List<Person> list =  personRepository.findAll(Sort.by(dir, column));
-        return list;
+
+
+        try {
+            Class cls = Class.forName("com.Entity.Person");
+            Field f[] = cls.getDeclaredFields();
+
+//            if()
+//            {
+//
+//            }
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+        if(column.equals("id") || column.equals("name") || column.equals("description"))
+        {
+            List<Person> list =  personRepository.findAll(Sort.by(dir, column));
+            return ResponseEntity.ok().body(list);
+        }else
+        {
+            return ResponseEntity.badRequest().build();
+        }
     }
+
+
+
+    @PutMapping("/personedit/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable(value = "id") Long personId, @Valid @RequestBody Person personDetails)
+    {
+        Person person = personRepository.findByid(personId);
+        if(person != null)
+        {
+            person.setName(personDetails.getName());
+            person.setDescription(personDetails.getDescription());
+            personRepository.save(person);
+            return ResponseEntity.ok().build();
+        }else
+        {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+
+    @GetMapping("/person/page")
+    public ResponseEntity<List> getPersonPage(
+            @RequestParam (value = "n") int n
+    )
+    {
+
+
+        return ResponseEntity.badRequest().build();
+    }
+
+
+
 
 
 
