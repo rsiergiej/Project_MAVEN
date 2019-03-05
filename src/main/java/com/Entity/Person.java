@@ -13,22 +13,27 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON")
+@Getter
+@Setter
  public class Person  {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Getter
     @Setter
+    @Column(name="id")
     private Long id;
 
 
-    @Column(name="name")
+
     @Getter
     @Setter
+    @Column(name="name")
     private  String name;
 
     @Getter
     @Setter
+    @Column(name="description")
     private String description;
 
    @Transient

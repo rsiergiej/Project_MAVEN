@@ -3,6 +3,7 @@ package com.Controllers;
 
 import com.Entity.Person;
 import com.Repositories.PersonRepository;
+import org.hibernate.type.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.SortDefault;
@@ -101,6 +102,8 @@ jezeli wyjatek to 500
     public ResponseEntity deleteNote(@PathVariable(value="id") Long personId)
     {
         Optional<Person> peronDelete = personRepository.findById(personId);
+        Person personDelete = personRepository.findByid(personId);
+
         if(peronDelete.isPresent())
         {
             personRepository.deleteById(personId);
@@ -136,11 +139,11 @@ jezeli wyjatek to 500
 
 
 
+
             Class cls = Class.forName("com.Entity.Person");
-            //Field f[] = cls.getDeclaredFields();
             Field f[] = cls.getDeclaredFields();
             for (int i = 0; i < f.length; i++) {
-				//System.out.println(f[i].getName());
+				System.out.println(f[i]);
 				if(column.equals(f[i].getName()))
                 {
                     List<Person> list =  personRepository.findAll(Sort.by(dir, column));
@@ -179,6 +182,8 @@ jezeli wyjatek to 500
         Person person = personRepository.findByid(personId);
         if(person != null)
         {
+
+
             person.setName(personDetails.getName());
             person.setDescription(personDetails.getDescription());
             personRepository.save(person);
