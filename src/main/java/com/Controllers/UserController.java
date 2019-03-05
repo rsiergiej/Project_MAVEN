@@ -122,42 +122,56 @@ jezeli wyjatek to 500
 //        return personRepository.findAll(sort);
 //    }
 
+
+
+
+
     //http://localhost:8080/users/search/person/?direction=DESC&column=id
     @GetMapping("/search/person")
         public ResponseEntity<List> getallpersonsort( // ASC - sortowanie rosnaco ; DESC - sortowanie malejąco
                 @RequestParam (value="direction" , defaultValue = "ASC") Sort.Direction dir,
                 @RequestParam (value="column", defaultValue = "id") String column)
     {
-
-
         try {
+
+
+
             Class cls = Class.forName("com.Entity.Person");
+            //Field f[] = cls.getDeclaredFields();
             Field f[] = cls.getDeclaredFields();
-
-//            if()
-//            {
-//
-//            }
-
-        } catch (ClassNotFoundException e) {
+            for (int i = 0; i < f.length; i++) {
+				//System.out.println(f[i].getName());
+				if(column.equals(f[i].getName()))
+                {
+                    List<Person> list =  personRepository.findAll(Sort.by(dir, column));
+                    return ResponseEntity.ok().body(list);
+                }
+			}
+        }
+        catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-
-
-
-
-        if(column.equals("id") || column.equals("name") || column.equals("description"))
-        {
-            List<Person> list =  personRepository.findAll(Sort.by(dir, column));
-            return ResponseEntity.ok().body(list);
-        }else
-        {
-            return ResponseEntity.badRequest().build();
-        }
+        return ResponseEntity.badRequest().build();
     }
 
 
+
+
+
+
+
+
+
+
+//        if(column.equals("id") || column.equals("name") || column.equals("description"))
+//        {
+//            List<Person> list =  personRepository.findAll(Sort.by(dir, column));
+//            return ResponseEntity.ok().body(list);
+//        }else
+//        {
+//            return ResponseEntity.badRequest().build();
+//        }
 
     @PutMapping("/personedit/{id}")
     public ResponseEntity<Person> updatePerson(@PathVariable(value = "id") Long personId, @Valid @RequestBody Person personDetails)

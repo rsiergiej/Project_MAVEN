@@ -31,7 +31,9 @@ import javax.persistence.*;
     @Setter
     private String description;
 
+   @Transient
     private String testStr;
+
 
 
     public Person(String name)
