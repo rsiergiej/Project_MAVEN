@@ -13,6 +13,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON")
+//@IdClass(Person.class)
 @Getter
 @Setter
  public class Person  {

@@ -3,16 +3,19 @@ package com.Controllers;
 
 import com.Entity.Person;
 import com.Repositories.PersonRepository;
-import org.hibernate.type.EntityType;
+
+import org.hibernate.metadata.ClassMetadata;
+import org.hibernate.persister.entity.AbstractEntityPersister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.web.SortDefault;
+
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.lang.reflect.Field;
-import java.util.Collections;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +37,10 @@ formularze
 
 jak wykona się poprawnie to zwarcam 200
 jezeli wyjatek to 500
+
+
+
+thymeleafem  lub JSP  - frontend
      */
 
 
@@ -135,11 +142,12 @@ jezeli wyjatek to 500
                 @RequestParam (value="direction" , defaultValue = "ASC") Sort.Direction dir,
                 @RequestParam (value="column", defaultValue = "id") String column)
     {
+
+
+
+
+
         try {
-
-
-
-
             Class cls = Class.forName("com.Entity.Person");
             Field f[] = cls.getDeclaredFields();
             for (int i = 0; i < f.length; i++) {
@@ -201,7 +209,7 @@ jezeli wyjatek to 500
             @RequestParam (value = "n") int n
     )
     {
-
+// https://www.logicbig.com/tutorials/spring-framework/spring-data/sorting-and-pagination.html
 
         return ResponseEntity.badRequest().build();
     }
@@ -209,6 +217,9 @@ jezeli wyjatek to 500
 
 
 
+
+
+    // THYMELEAF views https://www.logicbig.com/tutorials/spring-framework/spring-data/sorting-and-pagination.html
 
 
 }
