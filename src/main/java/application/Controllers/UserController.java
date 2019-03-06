@@ -1,11 +1,9 @@
-package com.Controllers;
+package application.Controllers;
 
 
-import com.Entity.Person;
-import com.Repositories.PersonRepository;
+import application.Entity.Person;
+import application.Repositories.PersonRepository;
 
-import org.hibernate.metadata.ClassMetadata;
-import org.hibernate.persister.entity.AbstractEntityPersister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 

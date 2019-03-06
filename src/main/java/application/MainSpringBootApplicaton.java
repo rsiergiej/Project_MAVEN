@@ -1,5 +1,4 @@
-package com;//ZADANIE
-/*
+package application;/*
 Zrób sobie coś takiego
 Pobranie listy produktów
 Pobranie szczegółów produktu
@@ -24,12 +23,10 @@ A później możesz robić save do bazy
  */
 
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;

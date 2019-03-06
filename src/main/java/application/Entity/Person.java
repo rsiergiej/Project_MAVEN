@@ -1,5 +1,4 @@
-package com.Entity;
-
+package application.Entity;
 
 import lombok.*;
 
@@ -16,7 +15,7 @@ import javax.persistence.*;
 //@IdClass(Person.class)
 @Getter
 @Setter
- public class Person  {
+ public class Person {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

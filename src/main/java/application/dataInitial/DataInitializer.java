@@ -1,8 +1,7 @@
-package com.dataInitial;
+package application.dataInitial;
 
-
-import com.Entity.Person;
-import com.Repositories.PersonRepository;
+import application.Entity.Person;
+import application.Repositories.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

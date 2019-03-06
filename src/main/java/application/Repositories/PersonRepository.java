@@ -1,8 +1,8 @@
-package com.Repositories;
+package application.Repositories;
 
 
 
-import com.Entity.Person;
+import application.Entity.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
