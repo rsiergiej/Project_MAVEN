@@ -1,6 +1,6 @@
 package application.dataInitial;
 
-import application.Entity.Person;
+import application.model.Person;
 import application.Repositories.PersonRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,7 +1,7 @@
-package application.Controllers;
+package application.controllers;
 
 
-import application.Entity.Person;
+import application.model.Person;
 import application.Repositories.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;

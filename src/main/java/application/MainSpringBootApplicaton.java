@@ -23,8 +23,11 @@ A później możesz robić save do bazy
  */
 
 
+import application.dataInitial.MyProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
 import java.io.IOException;
@@ -44,6 +47,9 @@ public class MainSpringBootApplicaton
 {
 
 
+	@Autowired
+	private ConfigurationProperties confprop;
+
 
 
 	static Connection con = null;
@@ -56,20 +62,25 @@ public class MainSpringBootApplicaton
 	public static void main(String[] args) {
 		SpringApplication.run(MainSpringBootApplicaton.class, args);
 
+//		confprop.g
+//		MyProperties test = new MyProperties("application.properties");
+//
+//		System.out.println(test.getPropertiesParam("spring.datasource.url"));
 
 
 
-		Properties prop = new Properties();
-		InputStream inputStream = MainSpringBootApplicaton.class.getClassLoader().getResourceAsStream("application.properties");
+//		Properties prop = new Properties();
+//		InputStream inputStream = MainSpringBootApplicaton.class.getClassLoader().getResourceAsStream("application.properties");
+//
+//		try {
+//			prop.load(inputStream);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println(prop.toString());
 
-		try {
-			prop.load(inputStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println(prop.toString());
+//		System.out.println(prop.getProperty("spring.datasource.url"));
 
-		System.out.println(prop.getProperty("spring.datasource.url"));
 		try
 		{
 			con = DriverManager.getConnection(URL, USER, PASSWORD);
