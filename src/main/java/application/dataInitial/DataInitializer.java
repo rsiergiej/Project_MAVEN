@@ -31,6 +31,23 @@ public class DataInitializer {
             repository.save(new Person("Tomek"));
             repository.save(new Person("Mateusz"));
             repository.save(test);
+            repository.save(new Person("Bartek"));
+            repository.save(new Person("Paweł"));
+            repository.save(new Person("Radek"));
+            repository.save(new Person("Kasia"));
+            repository.save(new Person("Paulina"));
+            repository.save(new Person("Java"));
+            repository.save(new Person("Ewelina"));
+            repository.save(new Person("Ania"));
+            repository.save(new Person("Jan", "moje dane"));
+            repository.save(new Person("Jacek"));
+            repository.save(new Person("Grzegorz"));
+            repository.save(new Person("Radosław"));
+            repository.save(new Person("Iwona"));
+            repository.save(new Person("Michał"));
+
+
+
 
 //            log.info("-------------------------------");
 //            for (Person customer : repository.findAll()) {

@@ -5,8 +5,12 @@ import application.model.Person;
 import application.Repositories.PersonRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +20,8 @@ import java.lang.reflect.Field;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 
 @RestController
@@ -100,7 +106,23 @@ thymeleafem  lub JSP  - frontend
         return ResponseEntity.ok().body(person);
     }
 
+    @PutMapping("/personedit/{id}")
+    public ResponseEntity<Person> updatePerson(@PathVariable(value = "id") Long personId, @Valid @RequestBody Person personDetails)
+    {
+        Person person = personRepository.findByid(personId);
+        if(person != null)
+        {
 
+
+            person.setName(personDetails.getName());
+            person.setDescription(personDetails.getDescription());
+            personRepository.save(person);
+            return ResponseEntity.ok().build();
+        }else
+        {
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
 
     @DeleteMapping("/persondelete/{id}") // działa prawidłowo
@@ -122,14 +144,13 @@ thymeleafem  lub JSP  - frontend
 
 
 
-
-
-//    @GetMapping("/getallpersonsort/{column}")
-//    public List getallpersonsort(@PathVariable(value="column") String column, @SortDefault(sort=column) Sort sort)
-//    {
-//        return personRepository.findAll(sort);
-//    }
-
+/*
+    @GetMapping("/getallpersonsort/{column}")
+    public List getallpersonsort(@PathVariable(value="column") String column, @SortDefault(sort=column) Sort sort)
+    {
+        return personRepository.findAll(sort);
+    }
+ */
 
 
 
@@ -141,10 +162,16 @@ thymeleafem  lub JSP  - frontend
                 @RequestParam (value="column", defaultValue = "id") String column)
     {
 
+        /*
+       COMMENT: metoda nie jest autoamtyczna ponieważ pobiera liste pól z klasy Person, a powinna pobierac listę kolumn z tabeli stworzonej na podstawie klasy Person
 
-
-
-
+        Przykładowa implementacja:
+           @GetMapping("/getallpersonsort/{column}")
+           public List getallpersonsort(@PathVariable(value="column") String column, @SortDefault(sort=column) Sort sort)
+            {
+                return personRepository.findAll(sort);
+            }
+         */
         try {
             Class cls = Class.forName("com.Entity.Person");
             Field f[] = cls.getDeclaredFields();
@@ -182,34 +209,36 @@ thymeleafem  lub JSP  - frontend
 //            return ResponseEntity.badRequest().build();
 //        }
 
-    @PutMapping("/personedit/{id}")
-    public ResponseEntity<Person> updatePerson(@PathVariable(value = "id") Long personId, @Valid @RequestBody Person personDetails)
-    {
-        Person person = personRepository.findByid(personId);
-        if(person != null)
-        {
 
-
-            person.setName(personDetails.getName());
-            person.setDescription(personDetails.getDescription());
-            personRepository.save(person);
-            return ResponseEntity.ok().build();
-        }else
-        {
-            return ResponseEntity.badRequest().build();
-        }
-    }
 
 
 
     @GetMapping("/person/page")
-    public ResponseEntity<List> getPersonPage(
-            @RequestParam (value = "n") int n
+    public Page<Person> getPersonPage(
+            @RequestParam (value = "page") int page,
+            @RequestParam(value = "size") int size
     )
     {
 // https://www.logicbig.com/tutorials/spring-framework/spring-data/sorting-and-pagination.html
 
-        return ResponseEntity.badRequest().build();
+
+       // Pageable pp = new PageRequest.of(page, size);
+       // Page<Person> pagePesron = personRepository.findAll(pp);
+
+
+
+        // http://www.bswen.com/2018/06/springboot-springboot-2-with-JPA-pagination-example.html
+        //Pageable pageable = PageRequest.of(0,page);
+        //Page<Person> students = personRepository.findAll(pageable);
+        //assertEquals(students.getSize(),page);
+
+
+
+            return null;
+
+
+
+
     }
 
 
