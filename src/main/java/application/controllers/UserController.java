@@ -13,13 +13,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.lang.reflect.Field;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.springframework.data.domain.Sort.Direction.ASC;
 
@@ -35,6 +40,7 @@ Dodanie produktu
 Usunięcie produkt
 Sortowanie listy
 paginacja
+
 logowanie
 formularze
 
@@ -152,9 +158,6 @@ thymeleafem  lub JSP  - frontend
     }
  */
 
-
-
-
     //http://localhost:8080/users/search/person/?direction=DESC&column=id
     @GetMapping("/search/person")
         public ResponseEntity<List> getallpersonsort( // ASC - sortowanie rosnaco ; DESC - sortowanie malejąco
@@ -194,24 +197,19 @@ thymeleafem  lub JSP  - frontend
 
 
 
-
-
-
-
-
-
-//        if(column.equals("id") || column.equals("name") || column.equals("description"))
-//        {
-//            List<Person> list =  personRepository.findAll(Sort.by(dir, column));
-//            return ResponseEntity.ok().body(list);
-//        }else
-//        {
-//            return ResponseEntity.badRequest().build();
+//    @GetMapping("/person/page")
+//    public Page<Person> getEmployees(@PageableDefault(size = 3, sort = "id") Pageable pageable,
+//                               Model model) {
+//        Page<Person> page = personRepository.findAll(pageable);
+//        List<Sort.Order> sortOrders = page.getSort().stream().collect(Collectors.toList());
+//        if (sortOrders.size() > 0) {
+//            Sort.Order order = sortOrders.get(0);
+//            model.addAttribute("sortProperty", order.getProperty());
+//            model.addAttribute("sortDesc", order.getDirection() == Sort.Direction.DESC);
 //        }
-
-
-
-
+//        model.addAttribute("page", page);
+//        return page;
+//    }
 
     @GetMapping("/person/page")
     public Page<Person> getPersonPage(
@@ -221,29 +219,31 @@ thymeleafem  lub JSP  - frontend
     {
 // https://www.logicbig.com/tutorials/spring-framework/spring-data/sorting-and-pagination.html
 
-
-       // Pageable pp = new PageRequest.of(page, size);
-       // Page<Person> pagePesron = personRepository.findAll(pp);
-
-
-
-        // http://www.bswen.com/2018/06/springboot-springboot-2-with-JPA-pagination-example.html
-        //Pageable pageable = PageRequest.of(0,page);
-        //Page<Person> students = personRepository.findAll(pageable);
-        //assertEquals(students.getSize(),page);
-
-
-
-            return null;
-
-
-
-
+        Page<Person> pagePesron = personRepository.findAll(PageRequest.of(page, size));
+            return pagePesron;
     }
 
 
 
 
+
+    Set<String> fruit= new HashSet<>();
+    String someText="WItaj świecie w Spring Boot";
+    @GetMapping("/")
+    public ModelAndView getMain() {
+        ModelAndView m = new ModelAndView();
+        m.setViewName("index");
+        m.addObject("someText",someText);
+        initFruit();
+        m.addObject("fruits",fruit);
+        return m;
+    }
+
+    public void initFruit() {
+        for(int i=0;i<=10;i++) {
+            fruit.add("owoc"+i);
+        }
+    }
 
 
     // THYMELEAF views https://www.logicbig.com/tutorials/spring-framework/spring-data/sorting-and-pagination.html

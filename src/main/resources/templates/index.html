@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pierwsza strona</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link th:href ="@{css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href ="@{css/style.css}" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="alert alert-primary" role="alert">
+                A simple primary alert—check it out!
+            </div>
+            <div class="alert alert-secondary" role="alert">
+                A simple secondary alert—check it out!
+            </div>
+
+            <div class="alert alert-light" role="alert">
+                A simple light alert—check it out!
+            </div>
+            <div class="alert alert-dark" role="alert">
+                A simple dark alert—check it out!
+            </div>
+            <span th:text="${someText}" class="badge badge-info">Label</span>
+            <br>
+            <span class="badge badge-info">Sprawdzenie, czy podany text jest pusty</span>
+            <div th:if="${#strings.isEmpty(someText)}">
+                <div>Text jest pusty</div>
+            </div>
+            <div th:unless="${#strings.isEmpty(someText)}">
+                <div th:text=" 'Wprowadzony test,' + ${someText}"></div>
+            </div>
+            <span class="badge badge-info">Wypisanie długości textu</span>
+            <br>
+            <div th:text=" ${#strings.length(someText)} ">Text jest pusty</div>
+            <span class="badge badge-info">Sprawdzenie, czy tekst jest taki sam dwie takie same zmienne</span>
+            <br>
+            <div th:text="${#strings.equals(someText,someText)} ">Text jest pusty</div>
+            <span class="badge badge-info">Sprawdzenie, czy tekst jest taki sam jedna zmienna to odpowiedź, druga statyczna</span>
+            <br>
+            <div th:text="${#strings.equals(someText,'tekst')} ">Text jest pusty</div>
+            <h1>Pętla w thymeleaf</h1>
+            <h1>Owoce</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>NAZWA</th>
+                </tr>
+                <tr th:each="fruit,iterationStatus  : ${fruits}">
+                    <td th:text="${iterationStatus.count}">1</td>
+                    <td th:text="${fruit}">Name</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>
+
+<script th:src="@{js/jquery.min.js}"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script th:src="@{js/scripts.js}"></script>
+</body>
+</html>
