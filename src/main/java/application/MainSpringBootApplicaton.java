@@ -1,27 +1,61 @@
 package application;/*
 Zrób sobie coś takiego
-Pobranie listy produktów
-Pobranie szczegółów produktu
-Dodanie produktu
-Usunięcie produktu
+Pobranie listy produktów - ok
+Pobranie szczegółów produktu - ok
+Dodanie produktu - ok
+Usunięcie produktu - ok
 
-Możesz poszukać biblioteki
-spring boot data
- I bazę h2
- https://dzone.com/articles/integrate-h2-database-in-your-spring-boot-applicat?fbclid=IwAR3F5fPptR1aFe4i0T3hPFcIBqkDzMtSBddRvU3uUg0AMYCZ_g94EbqG810
 
-http://localhost:8080/h2/
 
-https://dzone.com/articles/integrate-h2-database-in-your-spring-boot-applicat?fbclid=IwAR3F5fPptR1aFe4i0T3hPFcIBqkDzMtSBddRvU3uUg0AMYCZ_g94EbqG810
+Sortowanie listy - ok
+paginacja - ok
 
-// https://o7planning.org/en/11893/integrating-spring-boot-jpa-and-h2-database
+
+
+logowanie
+formularze
+
+jak wykona się poprawnie to zwarcam 200
+jezeli wyjatek to 500
+
+
+thymeleafem  lub JSP  - frontend
+
+
+
+
+
+Informacja o STREAM O Stream Klasa Stream I np w listach Masz metodę stream Np List test = New Arrsylist() test.stream().ITuCosRobisz
+
+Co to jest :
+Consumer - wsadzam do niego coś i nic nie zwraca czyli coś w stylu void funkcja(String text)
+Producer - nie przyjmuje nic ale coś zwraca czyli String funkcja()
+Function - przyjmuje typ A zwraca inny czyli Typ1 funkcja(Typ2 arg)
+BiFunction - to samo co Function czyli przyjmuje 2 róźne typy i zwraca 1 inny
+Stream
+Optional
+
+
+Kilka metod z klasy Stream:
+filter
+map
+Foreach
+Te na poczatek
+
+Metody z Optional:
+orElseGet()
+orElseThrow()
+
+Narazie to na początek się naucz, a w sumie jak to zrozumiesz to zrozumiesz resztę
+Te są najbardziej intuicyjne i najlepiej się na nich uczy i są najczęściej używane
+Ważne żebyś wiedział że streamy są lazy - Czyli czasami mogą Ci nie zwrócić wyniku Musisz wywołać na nich kolektor jakiś Typu forEach
+
+
 
 // INFO http://www.trainingbangalore.in/blog/java-interview-questions-answers-part3/
-Teraz zrób interfejs
-Który rozszerza JpaRepository
-A później możesz robić save do bazy
- */
 
+
+ */
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -112,57 +146,6 @@ public class MainSpringBootApplicaton
 
 
 
-
-
-
-
 }
 
 
-/* informacja o STREAM
-
-O Stream
-Klasa Stream
-I np w listach
-Masz metodę stream
-Np List dupa = New Arrsylist()
-dupa.stream().ITuCosRobisz
-Ogarnij
-Cos takiego jak :
-Consumer
-Producer
-Function
-BiFunction
-Stream
-Optional
-Tak w telegraficznym skrócie
-Consumer to wsadzasz do niego coś i nic nie zwraca czyli coś w stylu
-void funkcja(String dupa)
-Producer nie przyjmuje nic Ale coś zwraca czyli
-Coś funkcja()
-I zwracasz Coś
-Function przyjmuje typ jakiś A zwraca inny czyli
-Typ1 Funkcja (Typ2 argument)
-Przyjmuje typ2 A zwraca typ1
-Np
-A biFunction to to samo Tylko że przyjmujesz 2 różne typy i zwracasz 1 inny
-I to Ci wystarczy
-
-Ogarnij kilka metod z klasy Stream
-filter
-map
-Foreach
-Te na poczatek
-Metody z Optional to
-orElseGet()
-orElseThrow()
-I narazie to na początek się naucz
-A w sumie jak to zrozumiesz to zrozumiesz resztę
-Te są najbardziej intuicyjne
-I najlepiej się na nich uczy
-I są najczęściej używane
-Aha i ważne żebyś wiedział że streamy są lazy
-Czyli czasami mogą Ci nie zwrócić wyniku
-Musisz wywołać na nich kolektor jakiś
-Typu forEach
- */

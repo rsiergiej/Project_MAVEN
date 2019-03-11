@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import org.springframework.data.web.PageableDefault;
+
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.ui.Model;
@@ -33,25 +33,7 @@ import static org.springframework.data.domain.Sort.Direction.ASC;
 @RequestMapping("/users")
 public class UserController {
 
-    /*
-    Pobranie listy produktów
-Pobranie szczegółów produktu
-Dodanie produktu
-Usunięcie produkt
-Sortowanie listy
-paginacja
 
-logowanie
-formularze
-
-
-jak wykona się poprawnie to zwarcam 200
-jezeli wyjatek to 500
-
-
-
-thymeleafem  lub JSP  - frontend
-     */
 
 
     @Autowired
@@ -227,26 +209,7 @@ thymeleafem  lub JSP  - frontend
 
 
 
-    Set<String> fruit= new HashSet<>();
-    String someText="WItaj świecie w Spring Boot";
-    @GetMapping("/")
-    public ModelAndView getMain() {
-        ModelAndView m = new ModelAndView();
-        m.setViewName("index");
-        m.addObject("someText",someText);
-        initFruit();
-        m.addObject("fruits",fruit);
-        return m;
-    }
 
-    public void initFruit() {
-        for(int i=0;i<=10;i++) {
-            fruit.add("owoc"+i);
-        }
-    }
-
-
-    // THYMELEAF views https://www.logicbig.com/tutorials/spring-framework/spring-data/sorting-and-pagination.html
 
 
 }
