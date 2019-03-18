@@ -1,7 +1,10 @@
 package application.dataInitial;
 
+import application.Repositories.UserRepository;
 import application.model.Person;
 import application.Repositories.PersonRepository;
+import application.model.UserDTO;
+import org.h2.command.Command;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +20,19 @@ public class DataInitializer {
 
    // @Autowired private PersonRepository personRepository;
 
+
+
+    @Bean
+    public CommandLineRunner demo2(UserRepository userRepository)
+    {
+        userRepository.save(new UserDTO("login", "name","password", "pw@wp.pl"));
+
+
+        return(arg) ->{
+            userRepository.save(new UserDTO("login", "name","password", "pw@wp.pl"));
+            userRepository.save(new UserDTO("login", "name","password", "pw@wp.pl"));
+        };
+    }
     @Bean
     public CommandLineRunner demo(PersonRepository repository) {
 
