@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class AES {
 
 
-    private static final byte[] key = "testaesKEY0value".getBytes(StandardCharsets.UTF_8);;
+    private static final byte[] key = "testaesKEY0value".getBytes(StandardCharsets.UTF_8);
     private static final String ALGORITHM = "AES";
 
     public AES()
