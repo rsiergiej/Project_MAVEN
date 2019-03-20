@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
+
 
 @Controller
 public class LoginController {
@@ -27,7 +24,7 @@ public class LoginController {
 
 
     @RequestMapping(value = "/register.html", method = RequestMethod.GET)
-    public String register(Model model)
+    public String registerForm(Model model)
     {
         UserDTO userDto = new UserDTO();
 
@@ -42,7 +39,7 @@ public class LoginController {
 
 
     @PostMapping("/register.html")
-    public String registerPOST(@ModelAttribute(value="user") UserDTO userDTO, BindingResult bindingResult)
+    public String registerSubmit(@ModelAttribute(value="user") UserDTO userDTO, BindingResult bindingResult)
     {
 //  https://hellokoding.com/registration-and-login-example-with-spring-xml-configuration-maven-jsp-and-mysql/
 // http://websystique.com/spring-security/spring-security-4-password-encoder-bcrypt-example-with-hibernate/
@@ -65,11 +62,8 @@ public class LoginController {
 //            e.printStackTrace();
 //        }
 
-
-
-
         userRepository.save(userDTO);
         System.out.println(userDTO.toString());
-        return "register.html";
+        return "doneregister.html";
     }
 }

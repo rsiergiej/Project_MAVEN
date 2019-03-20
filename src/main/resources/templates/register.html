@@ -16,9 +16,12 @@
 
 
 
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
-    <!-- -->
+   <!-- <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    -->
+    <!-- wczytuje style z pliku css/style.css -->
+    <!--
     <link th:href="@{css/style.css}" rel="stylesheet">
+    -->
 </head>
 
 
@@ -26,8 +29,9 @@
 <h1>Login page</h1>
 <p th:if="${registerError}" class="error">Wrong user or password</p>
 
-<form th:action="@{/register.html}" th:object="${user}" method="POST" enctype="UTF8">
 
+
+<form th:action="@{/register.html}" th:object="${user}" method="POST" enctype="UTF8">
 
     <div>
         <label for="login">Login : </label>

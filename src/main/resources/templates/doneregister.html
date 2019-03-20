@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>RESULT OK</h1>
+<p th:text="'login: ' + ${user.login}" />
+<p th:text="'id: ' + ${user.firstName}" />
+<p th:text="'email: ' + ${user.email}" />
+<p th:text="'password: ' + ${user.password}" />
+
+
+<a type="button" value="Back" href="/register.html">Back</a>
+
+<!--
+<input type="button" value="Back" href="/register.html">
+-->
+</body>
+</html>

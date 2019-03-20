@@ -29,10 +29,12 @@ public class DataInitializer {
 
 
         return(arg) ->{
-            userRepository.save(new UserDTO("login", "name","password", "pw@wp.pl"));
-            userRepository.save(new UserDTO("login", "name","password", "pw@wp.pl"));
+            userRepository.save(new UserDTO("r.s", "radek","password12", "rad@wp.pl"));
+            userRepository.save(new UserDTO("m.k", "michal","passwordasdg", "mich@wp.pl"));
         };
     }
+
+
     @Bean
     public CommandLineRunner demo(PersonRepository repository) {
 
