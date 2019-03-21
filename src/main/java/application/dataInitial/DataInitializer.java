@@ -3,8 +3,8 @@ package application.dataInitial;
 import application.Repositories.UserRepository;
 import application.model.Person;
 import application.Repositories.PersonRepository;
-import application.model.UserDTO;
-import org.h2.command.Command;
+import application.model.User;
+import application.security.AES;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -18,19 +18,24 @@ public class DataInitializer {
 
 
 
-   // @Autowired private PersonRepository personRepository;
 
 
 
     @Bean
     public CommandLineRunner demo2(UserRepository userRepository)
     {
-        userRepository.save(new UserDTO("login", "name","password", "pw@wp.pl"));
+        AES aescrypt = new AES();
+
+        try {
+            userRepository.save(new User("login", "name", aescrypt.encrypt("password"), "pw@wp.pl"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
         return(arg) ->{
-            userRepository.save(new UserDTO("r.s", "radek","password12", "rad@wp.pl"));
-            userRepository.save(new UserDTO("m.k", "michal","passwordasdg", "mich@wp.pl"));
+            userRepository.save(new User("r.s", "radek", aescrypt.encrypt("passwordrad"), "rad@wp.pl"));
+            userRepository.save(new User("m.k", "michal",aescrypt.encrypt("passwordMICH"), "mich@wp.pl"));
         };
     }
 

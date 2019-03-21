@@ -2,20 +2,21 @@ package application.controllers;
 
 
 import application.Repositories.UserRepository;
-import application.model.UserDTO;
+import application.model.User;
+import application.security.AES;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 
 
 @Controller
-public class LoginController {
+public class RegisterController {
 
 
     @Autowired
@@ -23,47 +24,53 @@ public class LoginController {
 
 
 
+
+
     @RequestMapping(value = "/register.html", method = RequestMethod.GET)
     public String registerForm(Model model)
     {
-        UserDTO userDto = new UserDTO();
+        User userDto = new User();
 
         userDto.setLogin("login");
         userDto.setFirstName("name");
         userDto.setEmail("ww@gmail.com");
+        userDto.setPassword("test123");
         model.addAttribute("user", userDto);
 
-       // System.out.println(userDto.getFirstName());
         return "register.html";
     }
 
 
     @PostMapping("/register.html")
-    public String registerSubmit(@ModelAttribute(value="user") UserDTO userDTO, BindingResult bindingResult)
+    public String registerSubmit(@Valid User user, BindingResult bindingResult)
     {
 //  https://hellokoding.com/registration-and-login-example-with-spring-xml-configuration-maven-jsp-and-mysql/
 // http://websystique.com/spring-security/spring-security-4-password-encoder-bcrypt-example-with-hibernate/
 
 
-//        try {
-//            MessageDigest md = MessageDigest.getInstance("SHA-256");
-//            byte[] hashInBytes = md.digest(userDTO.getPassword().getBytes(StandardCharsets.UTF_8));
-//
-//            StringBuilder sb = new StringBuilder();
-//            for (byte b : hashInBytes) {
-//                sb.append(String.format("%02x", b));
-//            }
-//            System.out.println("SZYFROWANIE: " + sb.toString());
-//
-//            String encoded = Base64.getEncoder().encodeToString(hashInBytes);
-//                    System.out.println("ENCODE: " + encoded);
-//
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }
+        if(userRepository.findByLogin(user.getLogin()) != null)
+        {
+            bindingResult.rejectValue("login", "login.missing","Duplicate login");
+           // bindingResult.reject("login", "login");
 
-        userRepository.save(userDTO);
-        System.out.println(userDTO.toString());
+            System.out.println(bindingResult.hasErrors());
+        }
+
+        AES passwordAes = new AES();
+        try {
+            user.setPassword(passwordAes.encrypt(user.getPassword()));
+        } catch (Exception e) {
+            bindingResult.rejectValue("password", "login.password","Bad password");
+            e.printStackTrace();
+        }
+
+
+        if (bindingResult.hasErrors()) {
+            return "register.html";
+        }
+
+        userRepository.save(user);
+        System.out.println(user.toString());
         return "doneregister.html";
     }
 }

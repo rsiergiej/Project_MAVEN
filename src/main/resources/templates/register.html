@@ -33,7 +33,44 @@
 
 <form th:action="@{/register.html}" th:object="${user}" method="POST" enctype="UTF8">
 
-    <div>
+    <table>
+        <tr>
+            <td> Login:</td>
+            <td><input type="text" th:field="*{login}"/> </td>
+            <td th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Name Error</td>
+        </tr>
+
+        <tr>
+            <td> First name :</td>
+            <td><input type="text" th:field="*{firstName}"/> </td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Name Error</td>
+        </tr>
+
+        <tr>
+            <td> Email :</td>
+            <td><input type="text" th:field="*{email}"/> </td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
+        </tr>
+
+        <tr>
+            <td> Password :</td>
+            <td><input type="password" th:field="*{password}"/> </td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Register" />
+                <input type="reset" value="Reset" />
+            </td>
+        </tr>
+
+    </table>
+
+
+
+
+   <!-- <div>
         <label for="login">Login : </label>
         <input th:field="*{login}" type="text" id="login" name="login" value="admin"/>
     </div>
@@ -55,6 +92,7 @@
         <input type="submit" value="Register" />
         <input type="reset" value="Reset" />
     </div>
+    -->
 
 
 

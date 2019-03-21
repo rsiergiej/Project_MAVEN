@@ -2,12 +2,12 @@ package application.model;
 
 
 import lombok.*;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 // DATA TRANSFER OBJECT
 @Entity
@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Valid
-public class UserDTO {
+public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -28,12 +28,15 @@ public class UserDTO {
 
     @NotEmpty
     @NotNull
+    @Size(min=3, max=32)
     private String login;
     @NotEmpty
     @NotNull
+    @Size(min=3, max=32)
     private String firstName;
     @NotEmpty
     @NotNull
+    @Size(min=2, max=32)
     private String password;
     @NotEmpty
     @NotNull
@@ -41,7 +44,7 @@ public class UserDTO {
     private String email;
 
 
-    public UserDTO(String login, String firstName, String password, String email) {
+    public User(String login, String firstName, String password, String email) {
         this.login = login;
         this.firstName = firstName;
         this.password = password;
@@ -49,7 +52,9 @@ public class UserDTO {
 
     }
 
-//
+
+
+
 //    public void validate(Errors errors) {
 //
 //
