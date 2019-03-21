@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login page</title>
+    <title>Register page title</title>
 
 
 
@@ -26,9 +26,9 @@
 
 
 <body>
-<h1>Login page</h1>
-<p th:if="${registerError}" class="error">Wrong user or password</p>
-
+<h1>Register page</h1>
+<!--<p th:if="${registerError}" class="error">Wrong user or password</p>
+-->
 
 
 <form th:action="@{/register.html}" th:object="${user}" method="POST" enctype="UTF8">
@@ -66,37 +66,6 @@
         </tr>
 
     </table>
-
-
-
-
-   <!-- <div>
-        <label for="login">Login : </label>
-        <input th:field="*{login}" type="text" id="login" name="login" value="admin"/>
-    </div>
-    <div>
-        <label for="name">First name : </label>
-        <input th:field="*{firstName}" type="text" id="name" name="name" value="name" />
-    </div>
-    <div>
-        <label for="email"> Email :</label>
-        <input th:field="*{email}" type="email" id="email" name="email" value="wp.gmail.com"/>
-    </div>
-    <div>
-        <label for="password">Password : </label>
-        <input th:field="*{password}" type="password" id="password" name="password" value="password"/>
-    </div>
-    <br>
-
-    <div>
-        <input type="submit" value="Register" />
-        <input type="reset" value="Reset" />
-    </div>
-    -->
-
-
-
-
 
 
 

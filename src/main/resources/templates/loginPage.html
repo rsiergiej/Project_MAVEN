@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+
+
+
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Page title</title>
+</head>
+
+<body>
+<h1>Login page</h1>
+
+
+
+
+
+
+
+<form th:action="@{/login.html}" th:object="${login}" method="POST" enctype="UTF8">
+
+
+    <table>
+        <tr>
+            <td> Email:</td>
+            <td><input type="text" th:field="*{email}"/> </td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+        </tr>
+        <tr>
+            <td> Password:</td>
+            <td><input type="password" th:field="*{password}"/> </td>
+            <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Login" />
+                <input type="reset" value="Reset" />
+            </td>
+        </tr>
+
+    </table>
+
+</form>
+
+
+
+</body>
+</html>

@@ -26,7 +26,7 @@ public class RegisterController {
 
 
 
-    @RequestMapping(value = "/register.html", method = RequestMethod.GET)
+    @RequestMapping(value = "/registerPage.html", method = RequestMethod.GET)
     public String registerForm(Model model)
     {
         User userDto = new User();
@@ -37,11 +37,11 @@ public class RegisterController {
         userDto.setPassword("test123");
         model.addAttribute("user", userDto);
 
-        return "register.html";
+        return "registerPage.html";
     }
 
 
-    @PostMapping("/register.html")
+    @PostMapping("/registerPage.html")
     public String registerSubmit(@Valid User user, BindingResult bindingResult)
     {
 //  https://hellokoding.com/registration-and-login-example-with-spring-xml-configuration-maven-jsp-and-mysql/
@@ -66,11 +66,11 @@ public class RegisterController {
 
 
         if (bindingResult.hasErrors()) {
-            return "register.html";
+            return "registerPage.html";
         }
 
         userRepository.save(user);
         System.out.println(user.toString());
-        return "doneregister.html";
+        return "registerDonePage.html";
     }
 }
