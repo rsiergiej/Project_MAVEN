@@ -19,7 +19,7 @@
 
 
 
-<form th:action="@{/login.html}" th:object="${login}" method="POST" enctype="UTF8">
+<form th:action="@{/loginPage.html}"  th:object="${userLogin}" method="POST" enctype="UTF8">
 
 
     <table>
@@ -32,20 +32,20 @@
             <td> Password:</td>
             <td><input type="password" th:field="*{password}"/> </td>
             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
-        </tr>
+         </tr>
 
-        <tr>
-            <td>
-                <input type="submit" value="Login" />
-                <input type="reset" value="Reset" />
-            </td>
-        </tr>
+         <tr>
+             <td>
+                 <input type="submit" value="Login" />
+                 <input type="reset" value="Reset" />
+             </td>
+         </tr>
 
-    </table>
+     </table>
 
-</form>
+ </form>
 
 
 
-</body>
-</html>
+ </body>
+ </html>
