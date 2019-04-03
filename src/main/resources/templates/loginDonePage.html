@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>LOGIN Done Page title</title>
+</head>
+<body>
+
+<h1>RESULT LOGIN OK</h1>
+
+
+
+
+
+
+
+<p th:text="'email: ' + ${loginUserDto.email}" />
+<p th:text="'password: ' + ${loginUserDto.password}" />
+
+<p th:text="'Login status: ' + ${loginMessage}" />
+
+<a type="button" value="Back" href="/loginPage.html">Back</a>
+
+<!--
+<input type="button" value="Back" href="/registerPage.html">
+-->
+</body>
+</html>

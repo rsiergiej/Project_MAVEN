@@ -26,21 +26,18 @@ public class User {
     @Column(name="id")
     private Long id;
 
-    @NotEmpty
-    @NotNull
+
     @Size(min=3, max=32)
     private String login;
-    @NotEmpty
-    @NotNull
+
     @Size(min=3, max=32)
     private String firstName;
-    @NotEmpty
-    @NotNull
+
     @Size(min=2, max=32)
     private String password;
-    @NotEmpty
-    @NotNull
+
     @Email
+    @NotEmpty
     private String email;
 
 
@@ -48,7 +45,7 @@ public class User {
         this.login = login;
         this.firstName = firstName;
         this.password = password;
-        this.email =email;
+        this.email = email;
 
     }
 

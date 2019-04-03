@@ -12,8 +12,8 @@ paginacja - ok
 
 
 
-logowanie
-formularze
+logowanie - ok
+formularze - ok
 
 jak wykona się poprawnie to zwarcam 200
 jezeli wyjatek to 500

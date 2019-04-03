@@ -19,33 +19,34 @@
 
 
 
-<form th:action="@{/loginPage.html}"  th:object="${userLogin}" method="POST" enctype="UTF8">
+<form th:action="@{/loginPage.html}"  th:object="${loginUserDto}" method="POST" enctype="UTF8">
 
 
     <table>
         <tr>
-            <td> Email:</td>
-            <td><input type="text" th:field="*{email}"/> </td>
-            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
+            <td> Email :</td>
+            <td><input type="text" th:field="*{email}"/></td>
+            <td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</td>
         </tr>
+
         <tr>
-            <td> Password:</td>
-            <td><input type="password" th:field="*{password}"/> </td>
+            <td> Password :</td>
+            <td><input type="password" th:field="*{password}"/></td>
             <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</td>
          </tr>
 
-         <tr>
-             <td>
-                 <input type="submit" value="Login" />
-                 <input type="reset" value="Reset" />
-             </td>
-         </tr>
+          <tr>
+              <td>
+                  <input type="submit" value="Login" />
+                  <input type="reset" value="Reset" />
+              </td>
+          </tr>
 
-     </table>
+      </table>
 
- </form>
+  </form>
 
 
 
- </body>
- </html>
+  </body>
+  </html>

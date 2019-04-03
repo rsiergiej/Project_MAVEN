@@ -27,7 +27,7 @@ public class DataInitializer {
         AES aescrypt = new AES();
 
         try {
-            userRepository.save(new User("login", "name", aescrypt.encrypt("password"), "pw@wp.pl"));
+            userRepository.save(new User("login", "login", aescrypt.encrypt("login"), "login@wp.pl"));
         } catch (Exception e) {
             e.printStackTrace();
         }
