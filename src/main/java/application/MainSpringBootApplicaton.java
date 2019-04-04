@@ -55,7 +55,7 @@ Ważne żebyś wiedział że streamy są lazy - Czyli czasami mogą Ci nie zwró
 // INFO http://www.trainingbangalore.in/blog/java-interview-questions-answers-part3/
 
 
-
+generyki przyklady
 bootsrap i grid system - strona t
  */
 
