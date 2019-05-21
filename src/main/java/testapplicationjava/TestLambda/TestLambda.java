@@ -1,11 +1,13 @@
 package testapplicationjava.TestLambda;
 
 import com.sun.org.apache.xpath.internal.Arg;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.Consumer;
 
 
 /*
@@ -16,12 +18,16 @@ T - dowolny typ, U i S w razie potrzeby takżę dowolny typ
 
  */
 // przykłady? http://zacznijprogramowac.net/wyrazenia-lambda/
+//https://www.samouczekprogramisty.pl/wyrazenia-lambda-w-jezyku-java/
 public class TestLambda {
 
     private static final Map<String, InterfaceCalculation> calcMap = new HashMap<>();
+
+
     public static void main(String[] arg)
     {
         System.out.println("start application Test Lambda");
+
 
 
 
@@ -39,6 +45,47 @@ public class TestLambda {
         result("-", a, b);
         result("/", a, b);
         result("*", a, b);
+
+
+        ArrayList<String> aa = new ArrayList<String>();
+        List<Integer> bb = Arrays.asList(1,2,3,4);
+        aa.add("test1");
+        aa.add("test12");
+        aa.add("test13");
+        aa.add("test14");
+        aa.add("test15");
+        aa.add("test16");
+        aa.add("test17");
+        aa.add("test18");
+        Consumer<String> cc = st -> System.out.println(st);
+        Consumer<Integer> dd = st -> System.out.println(st);
+        aa.forEach(cc);
+        bb.forEach(dd);
+
+        System.out.println("NEXT TEST");
+        aa.forEach((c) -> System.out.println("Item " + c));
+
+        System.out.println("NEXT TEST");
+        aa.forEach((d) ->{
+            System.out.println("Iteam" + d);
+            if("test13".equals(d))
+            {
+                System.out.println("HERE");
+            }
+        });
+
+        System.out.println("NEXT TEST");
+        // method reference
+        aa.forEach(System.out::println);
+
+        System.out.println("NEXT TEST");
+        aa.stream().filter(s->s.contains("test12")).forEach(System.out::println);
+
+
+
+
+
+
 
 
 

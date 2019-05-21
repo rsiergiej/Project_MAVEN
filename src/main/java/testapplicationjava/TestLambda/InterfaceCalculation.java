@@ -17,7 +17,7 @@ public interface InterfaceCalculation {
 
 
 
-    //modyfikator dostępu "default" pozwala na dostęp do danego elementy tylko klasom z danego pakietu
+    //modyfikator dostępu "default" pozwala na dostęp do danego elementy tylko klasa z danego pakietu
     default public void off(){
         System.out.println("Wyłączenie...");
     }
